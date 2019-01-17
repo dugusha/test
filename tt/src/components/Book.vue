@@ -4,7 +4,7 @@
             <h3 v-html="item.title"></h3>
             <div style="text-align: left" v-html="item.content"></div>
             <div>
-                <button @click="goMenu(item.mark_id)">目录</button>
+                <button @click="goMenu()">目录</button>
                 <button @click="getContent()">重新拉取</button>
             </div>
         </div>
@@ -29,6 +29,7 @@
             return {
                 list:[],
                 id:"",
+                mark_id:"",
                 auto: true
             }
         },
@@ -53,8 +54,8 @@
                 }
                 return clientHeight + document.documentElement.scrollTop
             },
-            goMenu(id){
-                this.$router.push({path: '/menu',query:{ id:id}});
+            goMenu(){
+                this.$router.push({path: '/menu',query:{ id:this.mark_id}});
             },
             getContent(id){
                 this.auto = false
@@ -62,6 +63,7 @@
                     data=data.data.data
                     if(data!=null){
                         this.id = data.id
+                        this.mark_id = data.mark_id
                         this.list.push({
                             title: data.title,
                             content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp")

@@ -65,6 +65,6 @@ do {
         if ($ret==1) printMsg($item["id"].".".$title."\t更新成功");
         else printMsg($item["id"].".".$title."\t更新失败！！！！！！！");
     }
-    sleep(5);
+    sleep(60);
 } while (true);
 

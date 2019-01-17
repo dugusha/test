@@ -4,8 +4,8 @@
             <h3 v-html="item.title"></h3>
             <div style="text-align: left" v-html="item.content"></div>
             <div>
-                <!--<button @click="goMenu(item.mark_id)">目录</button>-->
-                <!--<button @click="getContent()">重新拉取</button>-->
+                <button @click="goMenu(item.mark_id)">目录</button>
+                <button @click="getContent()">重新拉取</button>
             </div>
         </div>
         <div style="text-align: right">
@@ -14,10 +14,6 @@
         <div v-if="!auto">
             没有了
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
         <br>
         <br>
         <br>
@@ -67,9 +63,8 @@
                     if(data!=null){
                         this.id = data.id
                         this.list.push({
-                            title: "wwwwww<br>",//data.title,
-                            content: "1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>"
-                                //data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp")
+                            title: data.title,
+                            content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp")
                         })
                         this.auto = true
                     }

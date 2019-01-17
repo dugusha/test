@@ -57,6 +57,6 @@ do {
         MarkService::getInstance()->setStatus($item["id"],MarkStatus::UPDATE);
         printMsg("《".$item["name"]."》更新".$updateCount."章内容");
     }
-    sleep(5);
+    sleep(600);
 } while (true);
 

@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0cfa0335-e8c4-4b16-b168-4b530e3fbcc8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/crons/book.php" afterPath="$PROJECT_DIR$/crons/book.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/static/css/app.f8a32c4a0e4e8191dde86933a72f62d2.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/static/css/app.f8a32c4a0e4e8191dde86933a72f62d2.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/static/js/app.b4955387cf9c31dfe9f0.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/static/js/app.b4955387cf9c31dfe9f0.js.map" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tt/src/components/Book.vue" afterPath="$PROJECT_DIR$/tt/src/components/Book.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" afterPath="$PROJECT_DIR$/web/static/js/manifest.2ae2e69a05c33dfc65f8.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/test/index.html" afterPath="$PROJECT_DIR$/web/test/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,35 +30,35 @@
       <file leaf-file-name="Book.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tt/src/components/Book.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="95" column="46" lean-forward="false" selection-start-line="95" selection-start-column="46" selection-end-line="96" selection-end-column="49" />
+            <state relative-caret-position="206">
+              <caret line="82" column="21" lean-forward="false" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#template#0;n#!!top" expanded="true" />
-                <marker date="1547783251334" expanded="true" signature="2862:2907" ph="..." />
+                <marker date="1547784948970" expanded="true" signature="2892:2937" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="book.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/crons/book.php">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+            <state relative-caret-position="15">
+              <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DHTML.js" pinned="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <file leaf-file-name="book.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crons/book.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="1742" column="0" lean-forward="false" selection-start-line="1742" selection-start-column="0" selection-end-line="1742" selection-end-column="0" />
+            <state relative-caret-position="420">
+              <caret line="32" column="5" lean-forward="false" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -112,7 +120,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/vue/src/components/web/Draw.vue" />
         <option value="$PROJECT_DIR$/vue/src/components/web/tem/Board.vue" />
         <option value="$PROJECT_DIR$/vue/src/components/web/Canvas.vue" />
         <option value="$PROJECT_DIR$/vue/src/router/web.js" />
@@ -161,8 +168,9 @@
         <option value="$PROJECT_DIR$/controllers/BookController.php" />
         <option value="$PROJECT_DIR$/services/BookService.php" />
         <option value="$PROJECT_DIR$/tt/src/components/Menu.vue" />
-        <option value="$PROJECT_DIR$/tt/src/components/Book.vue" />
         <option value="$PROJECT_DIR$/crons/book.php" />
+        <option value="$PROJECT_DIR$/tt/src/components/Book.vue" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -296,11 +304,11 @@
       <recent name="$PROJECT_DIR$/vue/static" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/controllers" />
       <recent name="$PROJECT_DIR$/tt/src/components" />
       <recent name="$PROJECT_DIR$/emnus" />
       <recent name="$PROJECT_DIR$/crons" />
-      <recent name="$PROJECT_DIR$/models" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -489,12 +497,12 @@
       <workItem from="1523585253424" duration="9019000" />
       <workItem from="1523759829808" duration="557000" />
       <workItem from="1523846078268" duration="30000" />
-      <workItem from="1547349127646" duration="50924000" />
+      <workItem from="1547349127646" duration="51333000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="827797000" />
+    <option name="totallyTimeSpent" value="828206000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -566,13 +574,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tt/build/webpack.base.conf.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -969,25 +970,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/crons/book.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="32" column="5" lean-forward="false" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tt/src/components/Book.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="95" column="46" lean-forward="false" selection-start-line="95" selection-start-column="46" selection-end-line="96" selection-end-column="49" />
+        <state relative-caret-position="206">
+          <caret line="82" column="21" lean-forward="false" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#button#0;n#div#3;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <marker date="1547783251334" expanded="true" signature="2862:2907" ph="..." />
+            <marker date="1547784948970" expanded="true" signature="2892:2937" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crons/book.php">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+        <state relative-caret-position="15">
+          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
           <folding />
         </state>
       </provider>

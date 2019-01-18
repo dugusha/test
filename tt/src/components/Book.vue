@@ -67,6 +67,7 @@
                 this.$router.push({path: '/'});
             },
             refresh(index){
+                this.auto = 1
                 axios.get("/book/refresh?id="+this.list[index]['id']).then((data)=>{
                     data=data.data.data
                     if(data!=null){
@@ -77,8 +78,8 @@
 //                            title: "bbb",
 //                            content: "bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>"
                         }
+                        this.auto = 0
                         this.$forceUpdate()
-                        console.log(this.list)
                     }
                 }).catch((response) => {})
             },

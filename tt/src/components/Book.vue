@@ -58,7 +58,7 @@
                 } else {
                     clientHeight = (document.body.clientHeight > document.documentElement.clientHeight) ? document.body.clientHeight : document.documentElement.clientHeight;
                 }
-                return clientHeight + document.documentElement.scrollTop
+                return clientHeight + document.documentElement.scrollTop+document.body.scrollTop;
             },
             goMenu(){
                 this.$router.push({path: '/menu',query:{ id:this.mark_id}});
@@ -79,7 +79,6 @@
                         }
                         this.$forceUpdate()
                         console.log(this.list)
-//                        this.auto = true
                     }
                 }).catch((response) => {})
             },

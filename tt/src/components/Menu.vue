@@ -2,6 +2,7 @@
     <div class="hello">
         <div>
             <h3 v-html="name"></h3>
+            <h3 v-if="list==''">加载中</h3>
             <button @click="goMark()" style="width: 100%">书签</button>
         </div>
         <div v-for="item in list">

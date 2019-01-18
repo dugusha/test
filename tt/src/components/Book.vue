@@ -1,18 +1,24 @@
 <template>
     <div class="hello">
-        <div v-for="item in list">
+        <div v-for="(item,index) in list">
             <h3 v-html="item.title"></h3>
             <div style="text-align: left" v-html="item.content"></div>
             <div>
+                <button @click="goMark()">书签</button>
                 <button @click="goMenu()">目录</button>
-                <button @click="getContent()">重新拉取</button>
+                <button @click="refresh(index)">重新拉取</button>
             </div>
         </div>
         <div style="text-align: right">
-            <button @click="getContent()">下一页</button>
+            <button style="width: 100%" @click="getContent()">下一页</button>
         </div>
-        <div v-if="!auto">
+        <div v-if="auto==1">
+            加载中
+            <button style="width: 100%" @click="goMark()">书签</button>
+        </div>
+        <div v-if="auto==2">
             没有了
+            <button style="width: 100%" @click="goMark()">书签</button>
         </div>
         <br>
         <br>
@@ -30,7 +36,7 @@
                 list:[],
                 id:"",
                 mark_id:"",
-                auto: true
+                auto: 1
             }
         },
         mounted() {
@@ -40,7 +46,7 @@
         },
         methods: {
             scroll(){
-                if(!this.auto) return
+                if(this.auto!=0) return
                 if((document.documentElement.scrollHeight-this.getNowHight())<100){
                     this.getContent()
                 }
@@ -57,18 +63,43 @@
             goMenu(){
                 this.$router.push({path: '/menu',query:{ id:this.mark_id}});
             },
+            goMark(){
+                this.$router.push({path: '/'});
+            },
+            refresh(index){
+                axios.get("/book/refresh?id="+this.list[index]['id']).then((data)=>{
+                    data=data.data.data
+                    if(data!=null){
+                        this.list[index] = {
+                            id: data.id,
+                            title: data.title,
+                            content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp")
+//                            title: "bbb",
+//                            content: "bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>"
+                        }
+                        this.$forceUpdate()
+                        console.log(this.list)
+//                        this.auto = true
+                    }
+                }).catch((response) => {})
+            },
             getContent(id){
-                this.auto = false
+                this.auto = 1
                 axios.get("/book/get?id="+this.id+"&getNext="+(id != this.id)).then((data)=>{
                     data=data.data.data
                     if(data!=null){
                         this.id = data.id
                         this.mark_id = data.mark_id
                         this.list.push({
+                            id: data.id,
                             title: data.title,
                             content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp")
+//                            title: "aaaaaa",
+//                            content: "abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>"
                         })
-                        this.auto = true
+                        this.auto = 0
+                    }else {
+                        this.auto = 2
                     }
                 }).catch((response) => {})
             },

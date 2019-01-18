@@ -26,44 +26,11 @@ do {
     $marks = MarkService::getInstance()->getListByIds($marks);
     $marks = array_column($marks,null,"id");
     foreach ($books as $item){
-        $mark = $marks[$item["mark_id"]];
-        //获取页面
-        try{
-            $content=file_get_contents($item["url"]);
-        }catch(Exception $e){
-            printMsg(json_encode($item)."\t更新失败！！！！！！！");
-            continue;
-        }
-        $encode = mb_detect_encoding($content, array("ASCII","UTF-8","GB2312","GBK","BIG5"));
-        $content=iconv($encode,"utf-8", $content);
-        $content=preg_replace("/\s+/", "", $content);
-
-        //获取标题
-        $titleRegular = json_decode($mark["title_regular"],true);
-        $title = [[],[$content]];
-        foreach ($titleRegular as $it){
-            preg_match_all($it, $title[1][0], $title);
-        }
-        $title = $title[1][0]??"未取到";
-
-        //获取内容
-        $contentRegular = json_decode($mark["content_regular"],true);
-        $content = [[],[$content]];
-        foreach ($contentRegular as $it){
-            preg_match_all($it, $content[1][0], $content);
-        }
-        $content = $content[1][0]??"";
-        $contentReplace = json_decode($mark["content_replace"],true);
-        foreach ($contentReplace as $k => $v){
-            $content = str_replace($k,$v,$content);
-        }
-        try{
-            $ret = BookService::getInstance()->updateCon($item["id"],$title,$content);
-        }catch(Exception $e){
-            $ret = 0;
-        }
-        if ($ret==1) printMsg($item["id"].".".$title."\t更新成功");
-        else printMsg($item["id"].".".$title."\t更新失败！！！！！！！");
+        $mark = $marks[$item->mark_id];
+        $ret=BookService::getInstance()->updateCon($mark,$item);
+        if ($ret) printMsg($item->id.".".$item->title."\t更新成功");
+        else printMsg($item->id.".".$item->title."\t更新失败！！！！！！！");
+        exit;
     }
     sleep(60);
 } while (true);

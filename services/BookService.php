@@ -3,6 +3,7 @@ namespace  app\services;
 use app\components\Service;
 use app\emnus\BookStatus;
 use app\models\BookModel;
+use app\models\MarkModel;
 use app\models\MenuModel;
 
 /**
@@ -15,11 +16,16 @@ use app\models\MenuModel;
 class BookService extends Service
 {
     function getMenu($markId){
+        $mark = MarkModel::find()->where(["id"=>$markId])->asArray()->one();
         $where = [
             "mark_id"=>$markId
         ];
-        $ret = BookModel::find()->select(["id","title","status"])->where($where)->orderBy("id desc")->asArray()->all();
-        return $ret;
+        $book = BookModel::find()->select(["id","title","status"])->where($where)->orderBy("id desc")->asArray()->all();
+        return [
+            "id"    => $mark["id"],
+            "name"  => $mark["name"],
+            "list"  => $book
+        ];
     }
     function get($param){
         $where = [];
@@ -44,7 +50,7 @@ class BookService extends Service
         if (!empty($param["start_id"])) $where[] = [">","id",$param["start_id"]];
         $ret = BookModel::find()->where($where);
         if (!empty($limit)) $ret->limit($limit);
-        return $ret->asArray()->all();
+        return $ret->all();
     }
 
     function getLastBook($mark_id){
@@ -60,12 +66,51 @@ class BookService extends Service
         return BookModel::getDb()->createCommand()->batchInsert(BookModel::tableName(),$title,$data)->execute();
     }
 
-    function updateCon($id,$title,$content){
-        $ret = BookModel::updateAll([
-            "title"     => $title,
-            "content"   => $content,
-            "status"    => BookStatus::FINISH
-        ],["id"=>$id]);
+    function updateCon($mark,$book){
+        //获取页面
+        try{
+            $content=file_get_contents($book->url);
+        }catch(Exception $e){
+            return false;
+        }
+        $encode = mb_detect_encoding($content, array("ASCII","UTF-8","GB2312","GBK","BIG5"));
+        $content=iconv($encode,"utf-8", $content);
+        $content=preg_replace("/\s+/", "", $content);
+
+        //获取标题
+        $titleRegular = json_decode($mark["title_regular"],true);
+        $title = [[],[$content]];
+        foreach ($titleRegular as $it){
+            preg_match_all($it, $title[1][0], $title);
+        }
+        $title = $title[1][0]??"未取到";
+
+        //获取内容
+        $contentRegular = json_decode($mark["content_regular"],true);
+        $content = [[],[$content]];
+        foreach ($contentRegular as $it){
+            preg_match_all($it, $content[1][0], $content);
+        }
+        $content = $content[1][0]??"";
+        $contentReplace = json_decode($mark["content_replace"],true);
+        foreach ($contentReplace as $k => $v){
+            $content = str_replace($k,$v,$content);
+        }
+        try{
+            $book->title	= $title;
+            $book->content	= $content;
+            $book->status	= BookStatus::FINISH;
+            $ret = $book->save();
+        }catch(Exception $e){
+            $ret = false;
+        }
         return $ret;
+    }
+
+    function refresh($id){
+        $book = BookModel::find()->where(["id"=>$id])->one();
+        $mark = MarkModel::find()->where(["id"=>$book->mark_id])->asArray()->one();
+        BookService::getInstance()->updateCon($mark,$book);
+        return $book;
     }
 }

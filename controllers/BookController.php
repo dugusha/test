@@ -20,4 +20,13 @@ class BookController extends Controller
         return BookService::getInstance()->get($param);
     }
 
+    public function actionRefresh(){
+        $param = Util::getRequestData();
+        Util::checkEmpty($param,[
+            "id",
+        ]);
+        return BookService::getInstance()->refresh($param["id"]);
+    }
+
+
 }

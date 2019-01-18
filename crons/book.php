@@ -30,7 +30,6 @@ do {
         $ret=BookService::getInstance()->updateCon($mark,$item);
         if ($ret) printMsg($item->id.".".$item->title."\t更新成功");
         else printMsg($item->id.".".$item->title."\t更新失败！！！！！！！");
-        exit;
     }
     sleep(60);
 } while (true);

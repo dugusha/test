@@ -1,6 +1,6 @@
 <template>
     <div id="app"   :style="'position: absolute;width: 100%;color:'+this.$root.color+';background:'+this.$root.background">
-        <div style="float: left">
+        <div style="float: left;position: fixed;">
             <el-button icon="el-icon-setting" :style="'position: absolute;opacity:'+this.$root.opacity/10" @click="dialogVisible = true" circle></el-button>
         </div>
         <el-dialog title="提示" :visible.sync="dialogVisible" :before-close="handleClose">

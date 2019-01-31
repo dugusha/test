@@ -20,7 +20,8 @@
         data () {
             return {
                 list:[],
-                id:""
+                id:"",
+                color:"red"
             }
         },
         mounted() {

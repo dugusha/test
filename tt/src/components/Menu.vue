@@ -6,7 +6,7 @@
             <button @click="goMark()" style="width: 100%">书签</button>
         </div>
         <div v-for="item in list">
-            <div v-bind:style="{ 'font-size':20+'px',color: item.status==2?'black':'#9E9E9E','text-align':'left' }" @click="goBook(item.id)">{{item.title}}</div>
+            <div v-bind:style="{ 'font-size':20+'px',color: item.status==2?'':'#9E9E9E','text-align':'left' }" @click="goBook(item.id)">{{item.title}}</div>
         </div>
     </div>
 </template>

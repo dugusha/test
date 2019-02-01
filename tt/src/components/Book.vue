@@ -47,9 +47,12 @@
         methods: {
             scroll(){
                 if(this.auto!=0) return
-                if((document.documentElement.scrollHeight-this.getNowHight())<100){
+                if((this.getPageHeight()-this.getNowHight())<100){
                     this.getContent()
                 }
+            },
+            getPageHeight(){
+                return document.body.scrollHeight>document.documentElement.scrollHeight?document.body.scrollHeight:document.documentElement.scrollHeight
             },
             getNowHight(){
                 let clientHeight = 0;

@@ -1,12 +1,12 @@
 <template>
-    <div class="hello">
+    <div class="hello" style="margin:5px;">
         <div>
             <h3 v-html="name"></h3>
             <h3 v-if="list==''">加载中</h3>
             <button @click="goMark()" style="width: 100%">书签</button>
         </div>
         <div v-for="item in list">
-            <div v-bind:style="{ 'font-size':20+'px',color: item.status==2?'':'#9E9E9E','text-align':'left' }" @click="goBook(item.id)">{{item.title}}</div>
+            <div v-bind:style="{ color: item.status==2?'':'#9E9E9E','text-align':'left' }" @click="goBook(item.id)">{{item.title}}</div>
         </div>
     </div>
 </template>
@@ -24,6 +24,7 @@
         },
         mounted() {
             this.id = this.$route.query.id
+            this.$root.mark_id = this.id
             this.getContent(this.id);
         },
         methods: {

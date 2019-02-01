@@ -1,5 +1,6 @@
 <template>
-    <div id="app"   :style="'position: absolute;width: 100%;color:'+this.$root.color+';background:'+this.$root.background">
+    <div id="app"   :style="'position: absolute;width: 100%;color:'+this.$root.color+';font-size:'+this.$root.textSize+'px'">
+        <div :style="'z-index: -99999;top: 0;left: 0;position: fixed;width: 100%;height: 100%;background: blue'+';background:'+this.$root.background"></div>
         <div class="xuanfu" id="moveDiv"
              @mousedown="down" @touchstart="down"
              @mousemove="move" @touchmove="move"
@@ -7,21 +8,33 @@
         >
                 <el-button icon="el-icon-setting" :style="'opacity:'+this.$root.opacity/100" @click="dialogVisible = true" circle></el-button>
         </div>
-        <el-dialog title="提示" width="80%" :visible.sync="dialogVisible" :before-close="handleClose">
+        <el-dialog title="设置" width="80%" :visible.sync="dialogVisible" :before-close="handleClose">
             <el-row>
-                <el-button type="danger" @click="goMark()" size="small" style="width: 100%">书签</el-button>
+                <el-col :span="12">
+                    <el-button type="primary" @click="goMark" size="small" round>书签</el-button>
+                </el-col>
+                <el-col :span="12">
+                    <el-button type="success" @click="goMenu" size="small" round>目录</el-button>
+                </el-col>
+            </el-row>
+            <el-row>
+                &nbsp
             </el-row>
             <el-row>
                 <el-col :span="6">字体:</el-col>
-                <el-col :span="18"><el-color-picker @change="changeSet" v-model="color" :predefine="predefineColors"></el-color-picker></el-col>
+                <el-col :span="18"><el-color-picker @change="changeSet" size="mini" v-model="color" :predefine="predefineColors"></el-color-picker></el-col>
             </el-row>
             <el-row>
                 <el-col :span="6">背景:</el-col>
-                <el-col :span="18"><el-color-picker @change="changeSet" v-model="background" :predefine="predefineColors"></el-color-picker></el-col>
+                <el-col :span="18"><el-color-picker @change="changeSet" size="mini" style="width: 100%" v-model="background" :predefine="predefineColors"></el-color-picker></el-col>
             </el-row>
             <el-row>
                 <el-col :span="6">按钮:</el-col>
-                <el-col :span="18"><el-slider @change="changeSet" v-model="opacity"></el-slider></el-col>
+                <el-col :span="18"><el-slider :step="10" @change="changeSet" v-model="opacity" :format-tooltip="formatTooltip"></el-slider></el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="6">字体:</el-col>
+                <el-col :span="18"><el-input-number size="mini" v-model="textSize" @change="changeSet" :min="12" :max="40"></el-input-number></el-col>
             </el-row>
         </el-dialog>
         <router-view />
@@ -49,6 +62,7 @@
                 color : "black",
                 background : "white",
                 opacity:60,
+                textSize:20,
                 position: { x: 0, y: 0 },
                 nx: '', ny: '', dx: '', dy: '', xPum: '', yPum: '',
             };
@@ -57,6 +71,7 @@
             this.color = this.$root.color
             this.background = this.$root.background
             this.opacity = this.$root.opacity
+            this.textSize = this.$root.textSize
         },
         created() {
             if(this.getCookie("color") == undefined){
@@ -71,6 +86,12 @@
             }else {
                 this.$root.background = this.getCookie("background")
             }
+            if(this.getCookie("textSize") == undefined){
+                this.setCookie("textSize",20,5)
+                this.$root.textSize = 20
+            }else {
+                this.$root.textSize = this.getCookie("textSize")
+            }
             this.$root.opacity = 60
         },
         methods: {
@@ -83,6 +104,9 @@
 
                 this.$root.background = this.background
                 this.setCookie("background",this.background,5);
+
+                this.$root.textSize = this.textSize
+                this.setCookie("textSize",this.textSize,5);
 
                 this.$root.opacity = this.opacity
             },
@@ -141,6 +165,16 @@
             },
             goMark(){
                 this.$router.push({path: '/'});
+            },
+            goMenu(){
+                if(this.$root.mark_id==undefined){
+                    alert("没有小说访问记录")
+                }else {
+                    this.$router.push({path: '/menu',query:{ id:this.$root.mark_id}});
+                }
+            },
+            formatTooltip(val) {
+                return val+"%";
             }
         }
     }

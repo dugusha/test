@@ -1,5 +1,5 @@
 <template>
-    <div class="hello">
+    <div class="hello" style="margin:5px;">
         <div v-for="(item,index) in list">
             <h3 v-html="item.title"></h3>
             <div style="text-align: left" v-html="item.content"></div>

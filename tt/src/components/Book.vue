@@ -93,6 +93,7 @@
                     if(data!=null){
                         this.id = data.id
                         this.mark_id = data.mark_id
+                        this.$root.mark_id = this.mark_id
                         this.list.push({
                             id: data.id,
                             title: data.title,

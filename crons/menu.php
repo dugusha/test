@@ -50,7 +50,9 @@ do {
             $newBook[] = [
                 "mark_id"  => $item["id"],
                 "path"  => $menu[$i],
-                "url"   => $item["host"].$menu[$i]
+                "url"   => $item["host"].$menu[$i],
+                "name"   => "待获取章节",
+                "content"   => "带获取"
             ];
         }
         $updateCount = empty($newBook)?0:BookService::getInstance()->create($newBook);

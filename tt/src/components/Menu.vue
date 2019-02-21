@@ -1,5 +1,5 @@
 <template>
-    <div class="hello" style="margin:5px;">
+    <div class="hello" :style="'margin:0 '+this.$root.margin+'px'">
         <div>
             <h3 v-html="name"></h3>
             <h3 v-if="list==''">加载中</h3>

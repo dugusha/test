@@ -1,5 +1,5 @@
 <template>
-    <div id="app"   :style="'position: absolute;width: 100%;color:'+this.$root.color+';font-size:'+this.$root.textSize+'px'">
+    <div id="app"   :style="'font-family: 方正启体简体,Microsoft YaHei,微软雅黑,宋体;position: absolute;width: 100%;color:'+this.$root.color+';font-size:'+this.$root.textSize+'px'">
         <div :style="'z-index: -99999;top: 0;left: 0;position: fixed;width: 100%;height: 100%;background: blue'+';background:'+this.$root.background"></div>
         <div class="xuanfu" id="moveDiv"
              @mousedown="down" @touchstart="down"
@@ -22,19 +22,23 @@
             </el-row>
             <el-row>
                 <el-col :span="6">字体:</el-col>
-                <el-col :span="18"><el-color-picker @change="changeSet" size="mini" v-model="color" :predefine="predefineColors"></el-color-picker></el-col>
+                <el-col :span="18"><el-color-picker @change="changeSet" size="mini" v-model="$root.color" :predefine="predefineColors"></el-color-picker></el-col>
             </el-row>
             <el-row>
                 <el-col :span="6">背景:</el-col>
-                <el-col :span="18"><el-color-picker @change="changeSet" size="mini" style="width: 100%" v-model="background" :predefine="predefineColors"></el-color-picker></el-col>
+                <el-col :span="18"><el-color-picker @change="changeSet" size="mini" style="width: 100%" v-model="$root.background" :predefine="predefineColors"></el-color-picker></el-col>
             </el-row>
             <el-row>
                 <el-col :span="6">按钮:</el-col>
-                <el-col :span="18"><el-slider :step="10" @change="changeSet" v-model="opacity" :format-tooltip="formatTooltip"></el-slider></el-col>
+                <el-col :span="18"><el-slider :step="10" @change="changeSet" v-model="$root.opacity" :format-tooltip="formatTooltip"></el-slider></el-col>
             </el-row>
             <el-row>
                 <el-col :span="6">字体:</el-col>
-                <el-col :span="18"><el-input-number size="mini" v-model="textSize" @change="changeSet" :min="12" :max="40"></el-input-number></el-col>
+                <el-col :span="18"><el-input-number size="mini" v-model="$root.textSize" @change="changeSet" :min="12" :max="40"></el-input-number></el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="6">边距:</el-col>
+                <el-col :span="18"><el-input-number size="mini" v-model="$root.margin" @change="changeSet" :min="0" :max="100"></el-input-number></el-col>
             </el-row>
         </el-dialog>
         <router-view />
@@ -59,56 +63,33 @@
                     '#deb887',
                     '#000000',
                 ],
-                color : "black",
-                background : "white",
-                opacity:60,
-                textSize:20,
                 position: { x: 0, y: 0 },
                 nx: '', ny: '', dx: '', dy: '', xPum: '', yPum: '',
             };
         },
         mounted() {
-            this.color = this.$root.color
-            this.background = this.$root.background
-            this.opacity = this.$root.opacity
-            this.textSize = this.$root.textSize
         },
         created() {
-            if(this.getCookie("color") == undefined){
-                this.setCookie("color","#f5deb3",5)
-                this.$root.color = "#f5deb3"
-            }else {
-                this.$root.color = this.getCookie("color")
-            }
-            if(this.getCookie("background") == undefined){
-                this.setCookie("background","#000000",5)
-                this.$root.background = "#000000"
-            }else {
-                this.$root.background = this.getCookie("background")
-            }
-            if(this.getCookie("textSize") == undefined){
-                this.setCookie("textSize",20,5)
-                this.$root.textSize = 20
-            }else {
-                this.$root.textSize = this.getCookie("textSize")
-            }
-            this.$root.opacity = 60
+            this.$root.color        = this.getCookie("color")       != undefined   ? this.getCookie("color")         : "#000000"
+            this.$root.background   = this.getCookie("background")  != undefined   ? this.getCookie("background")    : "#f5deb3"
+            this.$root.textSize     = this.getCookie("textSize")    != undefined   ? this.getCookie("textSize")      : 20
+            this.$root.margin       = this.getCookie("margin")      != undefined   ? this.getCookie("margin")        : 5
+            this.$root.opacity      = 60
         },
         methods: {
             handleClose() {
                 this.dialogVisible = false
             },
+            cookie(){
+                this.setCookie("color",this.$root.color,5);
+                this.setCookie("background",this.$root.background,5);
+                this.setCookie("textSize",this.$root.textSize,5);
+                this.setCookie("margin",this.$root.margin,5);
+            },
             changeSet(){
-                this.$root.color = this.color
-                this.setCookie("color",this.color,5);
-
-                this.$root.background = this.background
-                this.setCookie("background",this.background,5);
-
-                this.$root.textSize = this.textSize
-                this.setCookie("textSize",this.textSize,5);
-
-                this.$root.opacity = this.opacity
+                this.$forceUpdate()
+                this.$children[this.$children.length-1].$forceUpdate()
+                this.cookie()
             },
             setCookie(key,value,t)
             {

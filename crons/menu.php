@@ -51,7 +51,7 @@ do {
                 "mark_id"  => $item["id"],
                 "path"  => $menu[$i],
                 "url"   => $item["host"].$menu[$i],
-                "name"   => "待获取章节",
+                "title"   => "待获取章节",
                 "content"   => "带获取"
             ];
         }

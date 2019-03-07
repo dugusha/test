@@ -116,9 +116,10 @@ class BookService extends Service
 
     function verify(){
         $where = [
+            "and",
             ["=","status",BookStatus::FINISH],
             ["like","content","手打中"]
         ];
-        return BookModel::updateAll($where,["status"=>BookStatus::READY]);
+        return BookModel::updateAll(["status"=>BookStatus::READY],$where);
     }
 }

@@ -113,4 +113,12 @@ class BookService extends Service
         BookService::getInstance()->updateCon($mark,$book);
         return $book;
     }
+
+    function verify(){
+        $where = [
+            ["=","status",BookStatus::FINISH],
+            ["like","content","手打中"]
+        ];
+        return BookModel::updateAll($where,["status"=>BookStatus::READY]);
+    }
 }

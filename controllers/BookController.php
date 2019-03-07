@@ -28,5 +28,9 @@ class BookController extends Controller
         return BookService::getInstance()->refresh($param["id"]);
     }
 
+    public function actionVerify(){
+        return BookService::getInstance()->verify();
+    }
+
 
 }

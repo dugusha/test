@@ -10,11 +10,14 @@
         </div>
         <el-dialog title="设置" width="80%" :visible.sync="dialogVisible" :before-close="handleClose">
             <el-row>
-                <el-col :span="12">
+                <el-col :span="8">
                     <el-button type="primary" @click="goMark" size="small" round>书签</el-button>
                 </el-col>
-                <el-col :span="12">
+                <el-col :span="8">
                     <el-button type="success" @click="goMenu" size="small" round>目录</el-button>
+                </el-col>
+                <el-col :span="8">
+                    <el-button type="warning" @click="bs" size="small" round>补刷</el-button>
                 </el-col>
             </el-row>
             <el-row>
@@ -46,6 +49,7 @@
 </template>
 
 <script>
+    import axios from 'axios'
     export default {
         name: 'App',
         data() {
@@ -156,6 +160,11 @@
             },
             formatTooltip(val) {
                 return val+"%";
+            },
+            bs(){
+                axios.get("/book/verify").then((data)=>{
+                    alert("成功"+data.data.data+"章")
+                }).catch((response) => {})
             }
         }
     }

@@ -4,11 +4,8 @@ import Mark from '@/components/Mark'
 import Menu from '@/components/Menu'
 import Book from '@/components/Book'
 import Ee from '@/components/Ee'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.use(Router)
-Vue.use(ElementUI)
 
 export default new Router({
   routes: [

@@ -32,5 +32,13 @@ class BookController extends Controller
         return BookService::getInstance()->verify();
     }
 
+    public function actionClear(){
+        $param = Util::getRequestData();
+        Util::checkEmpty($param,[
+            "book_id",
+            "mark_id"
+        ]);
+        return BookService::getInstance()->clear($param["book_id"],$param["mark_id"]);
+    }
 
 }

@@ -10,14 +10,17 @@
         </div>
         <el-dialog title="设置" width="80%" :visible.sync="dialogVisible" :before-close="handleClose">
             <el-row>
-                <el-col :span="8">
+                <el-col :span="6">
                     <el-button type="primary" @click="goMark" size="small" round>书签</el-button>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="6">
                     <el-button type="success" @click="goMenu" size="small" round>目录</el-button>
                 </el-col>
-                <el-col :span="8">
+                <el-col :span="6">
                     <el-button type="warning" @click="bs" size="small" round>补刷</el-button>
+                </el-col>
+                <el-col :span="6">
+                    <el-button type="danger" @click="clear" size="small" round>清除历史</el-button>
                 </el-col>
             </el-row>
             <el-row>
@@ -156,6 +159,32 @@
                     alert("没有小说访问记录")
                 }else {
                     this.$router.push({path: '/menu',query:{ id:this.$root.mark_id}});
+                }
+            },
+            clear(){
+                if(this.$root.mark_id==undefined||this.$root.book_id==undefined){
+                    alert("没有小说访问记录")
+                }else {
+                    this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        axios.get("/api/book/clear?book_id="+this.$root.book_id+"&mark_id="+this.$root.mark_id).then((data)=>{
+                            data=data.data.data
+                            if(data!=null){
+                                this.$message({
+                                    type: 'success',
+                                    message: '成功删除'+data+"条"
+                                });
+                            }
+                        }).catch((response) => {})
+                    }).catch(() => {
+                        this.$message({
+                            type: 'info',
+                            message: '已取消删除'
+                        });
+                    });
                 }
             },
             formatTooltip(val) {

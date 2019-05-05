@@ -122,4 +122,13 @@ class BookService extends Service
         ];
         return BookModel::updateAll(["status"=>BookStatus::READY],$where);
     }
+
+    function clear($bookId,$markId){
+        $where = [
+            "and",
+            ["=","mark_id",$markId],
+            ["<","id",$bookId]
+        ];
+        return BookModel::deleteAll($where);
+    }
 }

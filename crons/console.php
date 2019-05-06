@@ -17,7 +17,7 @@ function printMsg($msg) {
 }
 
 //输出信息
-function p($msg) {
+function pp($msg) {
     print_r($msg);exit;
 }
 // 创建、配置、运行一个应用

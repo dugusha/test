@@ -1,5 +1,5 @@
 <template>
-    <div id="app"   :style="'font-family: 方正启体简体,Microsoft YaHei,微软雅黑,宋体;position: absolute;width: 100%;color:'+this.$root.color+';font-size:'+this.$root.textSize+'px'">
+    <div id="app"   :style="'font-family: 方正启体简体,Microsoft YaHei,微软雅黑,宋体;width: 100%;color:'+this.$root.color+';font-size:'+this.$root.textSize+'px'">
         <div :style="'z-index: -99999;top: 0;left: 0;position: fixed;width: 100%;height: 100%;background: blue'+';background:'+this.$root.background"></div>
         <div class="xuanfu" id="moveDiv"
              @mousedown="down" @touchstart="down"

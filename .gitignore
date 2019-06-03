@@ -1,2 +1,5 @@
 .DS_Store
 .idea/
+config/db.php
+test/node_modules/
+vendor/

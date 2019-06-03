@@ -3,3 +3,4 @@
 config/db.php
 test/node_modules/
 vendor/
+runtime/*

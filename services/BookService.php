@@ -73,29 +73,34 @@ class BookService extends Service
         }catch(Exception $e){
             return false;
         }
-        $encode = mb_detect_encoding($content, array("ASCII","UTF-8","GBK","GB2312","BIG5"));
-        if (in_array($encode,["GB2312","CP936"])) $encode = "GBK";
-        $content=iconv($encode,"utf-8", $content);
-        $content=preg_replace("/\s+/", "", $content);
+        try{
+            $encode = mb_detect_encoding($content, array("ASCII","UTF-8","GBK","GB2312","BIG5"));
+            if (in_array($encode,["GB2312","CP936"])) $encode = "GBK";
+            $content=iconv($encode,"utf-8", $content);
+            $content=preg_replace("/\s+/", "", $content);
 
-        //获取标题
-        $titleRegular = json_decode($mark["title_regular"],true);
-        $title = [[],[$content]];
-        foreach ($titleRegular as $it){
-            preg_match_all($it, $title[1][0], $title);
-        }
-        $title = $title[1][0]??"未取到";
+            //获取标题
+            $titleRegular = json_decode($mark["title_regular"],true);
+            $title = [[],[$content]];
+            foreach ($titleRegular as $it){
+                preg_match_all($it, $title[1][0], $title);
+            }
+            $title = $title[1][0]??"未取到";
 
-        //获取内容
-        $contentRegular = json_decode($mark["content_regular"],true);
-        $content = [[],[$content]];
-        foreach ($contentRegular as $it){
-            preg_match_all($it, $content[1][0], $content);
-        }
-        $content = $content[1][0]??"";
-        $contentReplace = json_decode($mark["content_replace"],true);
-        foreach ($contentReplace as $k => $v){
-            $content = str_replace($k,$v,$content);
+            //获取内容
+            $contentRegular = json_decode($mark["content_regular"],true);
+            $content = [[],[$content]];
+            foreach ($contentRegular as $it){
+                preg_match_all($it, $content[1][0], $content);
+            }
+            $content = $content[1][0]??"";
+            $contentReplace = json_decode($mark["content_replace"],true);
+            foreach ($contentReplace as $k => $v){
+                $content = str_replace($k,$v,$content);
+            }
+        }catch(Exception $e){
+            $title      = empty($title)?"未取到":$title;
+            $content    = empty($content)?"未取到":$content;
         }
         try{
             $book->title	= $title;

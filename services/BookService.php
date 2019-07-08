@@ -5,6 +5,7 @@ use app\emnus\BookStatus;
 use app\models\BookModel;
 use app\models\MarkModel;
 use app\models\MenuModel;
+use yii\base\ErrorException;
 
 /**
  * Created by PhpStorm.
@@ -98,7 +99,7 @@ class BookService extends Service
             foreach ($contentReplace as $k => $v){
                 $content = str_replace($k,$v,$content);
             }
-        }catch(Exception $e){
+        }catch(ErrorException $e){
             $title      = empty($title)?"未取到":$title;
             $content    = empty($content)?"未取到":$content;
         }

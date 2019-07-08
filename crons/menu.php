@@ -21,6 +21,7 @@ do {
         //获取目录
         $menu=file_get_contents($item["url"]);
         $encode = mb_detect_encoding($menu, array("ASCII","UTF-8","GBK","GB2312","BIG5"));
+        if ($encode == "GB2312") $encode = "GBK";
         $menu=iconv($encode,"utf-8", $menu);
         $menu=preg_replace("/\s+/", "", $menu);
         $menuRegular = json_decode($item["menu_regular"],true);

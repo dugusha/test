@@ -77,7 +77,7 @@
                         this.list[index] = {
                             id: data.id,
                             title: data.title,
-                            content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp")
+                            content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp").replace(/a&nbsp&nbsphref/gm,"a href")
 //                            title: "bbb",
 //                            content: "bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>"
                         }
@@ -98,7 +98,7 @@
                         this.list.push({
                             id: data.id,
                             title: data.title,
-                            content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp")
+                            content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp").replace(/a&nbsp&nbsphref/gm,"a href")
 //                            title: "aaaaaa",
 //                            content: "abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>"
                         })

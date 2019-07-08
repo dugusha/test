@@ -100,8 +100,8 @@ class BookService extends Service
                 $content = str_replace($k,$v,$content);
             }
         }catch(ErrorException $e){
-            $title      = empty($title)?"未取到":$title;
-            $content    = empty($content)?"未取到":$content;
+            $title      = "未取到";
+            $content    = "未取到";
         }
         try{
             $book->title	= $title;

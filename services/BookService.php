@@ -74,7 +74,7 @@ class BookService extends Service
             return false;
         }
         $encode = mb_detect_encoding($content, array("ASCII","UTF-8","GBK","GB2312","BIG5"));
-        if ($encode == "GB2312") $encode = "GBK";
+        if (in_array($encode,["GB2312","CP936"])) $encode = "GBK";
         $content=iconv($encode,"utf-8", $content);
         $content=preg_replace("/\s+/", "", $content);
 

@@ -101,7 +101,7 @@ class BookService extends Service
             }
         }catch(ErrorException $e){
             $title      = "未取到";
-            $content    = "未取到";
+            $content    = "未取到,跳转查看".$book->url;
         }
         try{
             $book->title	= $title;

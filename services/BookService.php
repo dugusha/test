@@ -70,7 +70,13 @@ class BookService extends Service
     function updateCon($mark,$book){
         //获取页面
         try{
-            $content=file_get_contents($book->url);
+            $arrContextOptions=array(
+                "ssl"=>array(
+                    "verify_peer"=>false,
+                    "verify_peer_name"=>false,
+                ),
+            );
+            $content=file_get_contents($book->url,false, stream_context_create($arrContextOptions));
         }catch(Exception $e){
             return false;
         }

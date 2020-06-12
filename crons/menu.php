@@ -19,7 +19,7 @@ do {
     if (empty($marks)) printMsg("无书签");
     foreach ($marks as $item){
         //获取目录
-        $menu=file_get_contents($item["url"]);
+        $menu=file_get_contents($item["url"],false, stream_context_create($arrContextOptions));
         $encode = mb_detect_encoding($menu, array("ASCII","UTF-8","GBK","GB2312","BIG5"));
         if (in_array($encode,["GB2312","CP936"])) $encode = "GBK";
         $menu=iconv($encode,"utf-8//IGNORE", $menu);

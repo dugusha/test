@@ -6,7 +6,12 @@ use app\services\MarkService;
 
 require_once dirname(__FILE__) . '/console.php';
 
-
+$arrContextOptions=array(
+    "ssl"=>array(
+        "verify_peer"=>false,
+        "verify_peer_name"=>false,
+    ),
+);
 
 $stopTime = strtotime("+1 days");
 do {

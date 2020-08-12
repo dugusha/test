@@ -2,6 +2,7 @@
     <div class="hello" :style="'margin:0 '+this.$root.margin+'px'">
         <div v-for="(item,index) in list">
             <h3 v-html="item.title"></h3>
+            <p style="margin-top: -20px;font-size: 10px;font-weight: bolder">{{item.time}}</p>
             <div style="text-align: left" v-html="item.content"></div>
             <div>
                 <button @click="goMark()">书签</button>
@@ -77,6 +78,7 @@
                         this.list[index] = {
                             id: data.id,
                             title: data.title,
+                            time: data.c_t,
                             content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp").replace(/a&nbsp&nbsphref/gm,"a href")
 //                            title: "bbb",
 //                            content: "bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>bbb<br>"
@@ -98,6 +100,7 @@
                         this.list.push({
                             id: data.id,
                             title: data.title,
+                            time: data.c_t,
                             content: data.content.replace(/\n/gm,"<br/>").replace(/ /gm,"&nbsp&nbsp").replace(/a&nbsp&nbsphref/gm,"a href")
 //                            title: "aaaaaa",
 //                            content: "abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>abcdf<br>"
